@@ -13,7 +13,7 @@ import { InputFileComponent } from './input-file/input-file.component'
         CommonModule
     ],
     exports: [
-        FileReaderDirective
+        InputFileComponent
     ]
 })
 

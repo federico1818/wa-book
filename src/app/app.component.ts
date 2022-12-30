@@ -8,7 +8,4 @@ import { Component } from '@angular/core'
 
 export class AppComponent {
 
-    public onRead(content: string): void {
-        console.log(content)
-    }
 }

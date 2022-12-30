@@ -6,7 +6,7 @@ import { Directive, ElementRef, EventEmitter, HostListener, Output } from '@angu
 
 export class FileReaderDirective {
 
-    @Output() public read: EventEmitter<string> = new EventEmitter
+    @Output() public read: EventEmitter<string> = new EventEmitter<string>
 
     @HostListener('change', ['$event.target'])
     public onClick(element: HTMLInputElement) {
