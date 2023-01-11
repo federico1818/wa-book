@@ -1,7 +1,7 @@
 import { Message } from "./message"
 
-export class TextMessage implements Message {
-    public user: any
-    public date!: Date
-    public lines: string[] = []
+export interface TextMessage extends Message {
+    date: Date
+    user: any
+    message: string
 }
