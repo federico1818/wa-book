@@ -1,7 +1,5 @@
-import { Component, EventEmitter, Output } from '@angular/core'
-import { Message } from 'src/app/message/message'
-import { TxtParserService } from 'src/app/parser/txt-parser.service'
-import { TxtPattern } from 'src/app/parser/txt-pattern'
+import { Component } from '@angular/core'
+import { TxtParserService } from 'src/app/chat/parser/txt-parser.service'
 
 @Component({
     selector: 'app-input-file',
@@ -10,18 +8,15 @@ import { TxtPattern } from 'src/app/parser/txt-pattern'
 })
 
 export class InputFileComponent {
-    @Output() public read: EventEmitter<Message[]> = new EventEmitter<Message[]>
-
-    private readonly MSG_INFO = 'Messages and calls are end-to-end encrypted. No one outside of this chat, not even WhatsApp, can read or listen to them. Tap to learn more'
 
     constructor(
-        private txtParserService: TxtParserService
+        private _txtParserService: TxtParserService
     ) {}
 
     /* processed */
     public onRead(content: string): void {
-        const groups = this.txtParserService.parse(content)
-        console.log(groups)
+        const chat = this._txtParserService.parse(content)
+        console.log(chat)
     }
 
 }

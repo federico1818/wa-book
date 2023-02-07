@@ -1,69 +1,121 @@
-import { Injectable } from '@angular/core'
-import { TxtPattern } from 'src/app/parser/txt-pattern'
-import { TextMessage } from 'src/app/chat/messages/text-message'
-import { Chat } from 'src/app/chat/chat'
-import { User } from 'src/app/chat/user'
+// import { Injectable } from '@angular/core'
+// import { Chat } from 'src/app/chat/chat'
+// import { User } from 'src/app/chat/user'
+// import { Message } from 'src/app/chat/messages/message'
+// import { TextMessage } from 'src/app/chat/messages/text-message'
+// import { InfoMessage } from 'src/app/chat/messages/info-message'
+// import { MediaMessage } from 'src/app/chat/messages/media-message'
 
-@Injectable({
-    providedIn: 'root'
-})
+// @Injectable({
+//     providedIn: 'root'
+// })
 
-export class TxtParserService {
-    private _chat: Chat = new Chat
+// export class TxtParserService {
+//     private _chat: Chat = new Chat
 
-    constructor() {}
+//     constructor() {}
 
-    public parse(content: string): Chat {
-        const lines = content.split(/\r?\n/)
-        return this.processLines(lines)
-    }
+//     public parse(content: string) {
+//         const lines = content.split(/\r?\n/)
 
-    private processLines(lines: String[]): Chat {
+//         return this.processLines(lines)
+//     }
 
-        lines.forEach((line: String) => {
-            const matchMsgFull = this.matchMsgFull(line)
+//     private processLines(lines: String[]) {
+//         lines.forEach((line: String) => {
+//             const message: Message = this.getMessage(line)
+//             this._chat.addMessage(message)
+//         })
+//         return this._chat
+//     }
 
-            if(matchMsgFull) {
-                const text: TextMessage = this.createTextMessage(matchMsgFull)
-                this._chat.messages.push(text)
-            }
-            else {
-                console.log('INFO - ', line)
-            }
+//     private processLines(lines: String[]): Chat {
+//         let prevUser!: User
+//         let prevDate!: Date
 
-        })
+//         const message: Message = this.getMessage(lines[0])
 
-        return this._chat
-    }
+//         lines.forEach((line: String) => {
+//             const message: Message = this.getMessage(line)
+//             this._chat.messages.push(message)
+//         })
 
-    private matchMsgFull(line: String): RegExpMatchArray | null {
-        return line.match(RegExp(TxtPattern.MSG_FULL))
-    }
+//         return this._chat
+//     }
 
-    private createTextMessage(array: RegExpMatchArray): TextMessage {
-        return {
-            date: this.createDate(array),
-            message: this.createText(array),
-            user: this.getUser(array)
-        }
-    }
+//     private getMessage(line: String) {
+//         let matchMsg!: RegExpMatchArray | null
 
-    private createDate(array: RegExpMatchArray): Date {
-        const year: number = 2000 + parseInt(array[5], 10)
-        const month: number = parseInt(array[1], 10)
-        const day: number = parseInt(array[3], 10)
-        const hour: number = parseInt(array[7], 10)
-        const minutes: number = parseInt(array[9], 10)
-        const seconds: number = 0
+//         matchMsg = this.matchMediaMessage(line)
+//         if(matchMsg)
+//             return this.createMediaMessage(matchMsg)
 
-        return new Date(year, month, day, hour, minutes, seconds)
-    }
+//         return line
+//     }
 
-    private getUser(array: RegExpMatchArray): User {
-        return this._chat.getFirstUserOrCreate(array[11])
-    }
+//     private getMessage(line: String): Message {
+//         let matchMsg!: RegExpMatchArray | null
 
-    private createText(array: RegExpMatchArray): string {
-        return array[13]
-    }
-}
+//         matchMsg = this.matchMediaMessage(line)
+//         if(matchMsg)
+//             return this.createMediaMessage(matchMsg)
+
+//         matchMsg = this.matchFullMessage(line)
+//         if(matchMsg)
+//             return this.createFullTextMessage(matchMsg)
+
+//         matchMsg = this.matchInfoMessage(line)
+//         if(matchMsg)
+//             return this.createInfoMessage(matchMsg)
+
+//         return this.createLineMessage(line)
+//     }
+
+//     private matchMediaMessage(line: String): RegExpMatchArray | null {
+//         return line.match(RegExp(TxtPattern.MSG_MEDIA))
+//     }
+
+//     private matchFullMessage(line: String): RegExpMatchArray | null {
+//         return line.match(RegExp(TxtPattern.MSG_FULL))
+//     }
+
+//     private matchInfoMessage(line: String): RegExpMatchArray | null {
+//         return line.match(RegExp(TxtPattern.MSG_INFO))
+//     }
+
+//     private createMediaMessage(array: RegExpMatchArray): MediaMessage {
+
+//     }
+
+//     private createLineMessage(line: String): Message {
+//         return {
+//             message: line,
+//             type: 'line'
+//         }
+//     }
+
+//     private createFullTextMessage(array: RegExpMatchArray): TextMessage {
+//         return {
+//             date: this.createDate(array),
+//             message: this.createText(array),
+//             user: this.getUser(array),
+//             type: 'text'
+//         }
+//     }
+
+//     private createInfoMessage(array: RegExpMatchArray): InfoMessage {
+//         return {
+//             date: this.createDate(array),
+//             message: array[11],
+//             type: 'info'
+//         }
+//     }
+
+//     private getUser(array: RegExpMatchArray): User {
+//         return this._chat.getFirstUserOrCreate(array[11])
+//     }
+
+//     private createText(array: RegExpMatchArray): string {
+//         return array[13]
+//     }
+// }

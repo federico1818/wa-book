@@ -3,7 +3,11 @@ import { Message } from "src/app/chat/messages/message"
 
 export class Chat {
     public users: User[] = []
-    public messages: Message[] = []
+    private _messages: Message[] = []
+
+    public addMessage(message: Message): void {
+        this._messages.push(message)
+    }
 
     public getFirstUserOrCreate(name: string): User {
         const user: User | undefined  = this.users.find((user: User) => {
