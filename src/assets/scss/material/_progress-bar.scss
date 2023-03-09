@@ -1,0 +1,7 @@
+body .mdc-linear-progress__buffer-bar {
+    background-color: var(--progress-bar-buffer-bg-color);
+}
+
+body .mdc-linear-progress__bar-inner {
+    border-color: var(--progress-bar-inner-bg-color);
+}

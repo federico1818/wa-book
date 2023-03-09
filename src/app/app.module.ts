@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core'
 import { BrowserModule } from '@angular/platform-browser'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
 import { FileModule } from './file/file.module'
 import { ChatModule } from './chat/chat.module'
@@ -14,10 +15,11 @@ import { FileRoutingModule } from 'src/app/file/file-routing.module'
     ],
     imports: [
         BrowserModule,
+        BrowserAnimationsModule,
         FileModule,
         ChatModule,
         AppRoutingModule,
-        FileRoutingModule
+        FileRoutingModule,
     ],
     providers: [],
     bootstrap: [AppComponent]
