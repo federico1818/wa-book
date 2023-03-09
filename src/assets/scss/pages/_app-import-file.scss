@@ -1,0 +1,9 @@
+app-import-file {
+    display: grid;
+    align-content: center;
+    justify-content: center;
+    grid-template-columns: minmax(auto, 480px);
+    grid-template-rows: minmax(auto, 100%);
+    margin: 16px;
+    background-color: var(--app-import-file-bg-color);
+}

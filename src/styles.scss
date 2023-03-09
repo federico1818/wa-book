@@ -1,15 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 
-:root {
-    --app-bg-color: rgb(16, 26, 32);
-    --app-text-color: rgb(233, 237, 239);
-    // --chat-bg-color: rgb(239, 234, 226);
-    --chat-bg-color: rgb(11, 20, 26);
-    --button-color: rgb(217, 222, 224);
-    --button-bg-color: rgb(32, 44, 51);
-}
-
-body {
-    background-color: var(--app-bg-color);
-    color: var(--app-text-color);
-}
+@import 'assets/scss/themes/dark';
+@import 'assets/scss/reset';
+@import 'assets/scss/components/body';
+@import 'assets/scss/components/app-root';
+@import 'assets/scss/components/app-attach-file';
+@import 'assets/scss/pages/app-import-file';
