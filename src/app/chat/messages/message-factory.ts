@@ -8,6 +8,8 @@ export abstract class MessageFactory {
         private _chat: Chat
     ) {}
 
+    public abstract readonly PATTERN: string
+
     public abstract createMessage(array: RegExpMatchArray): Message
 
     protected createDate(array: RegExpMatchArray): Date {

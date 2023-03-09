@@ -1,4 +1,8 @@
 import { Message } from "src/app/chat/messages/message"
+import { User } from "src/app/chat/user"
 
-export interface MediaMessage extends Message {
+export class MediaMessage extends Message {
+    readonly type?: string = 'media'
+    public user!: User
+    public media!: string
 }

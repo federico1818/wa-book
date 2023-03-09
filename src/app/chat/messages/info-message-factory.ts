@@ -1,8 +1,8 @@
-import { MediaMessage } from "src/app/chat/messages/media-message"
+import { InfoMessage } from "src/app/chat/messages/info-message"
 import { MessageFactory } from "src/app/chat/messages/message-factory"
 import { TxtPattern } from 'src/app/chat/parser/txt-pattern'
 
-export class MediaMessageFactory extends MessageFactory {
+export class InfoMessageFactory extends MessageFactory {
     public readonly PATTERN: string =
         TxtPattern.day +
         TxtPattern.dateSeparator +
@@ -13,16 +13,14 @@ export class MediaMessageFactory extends MessageFactory {
         TxtPattern.hour +
         TxtPattern.hourSeparator +
         TxtPattern.minutes +
-        TxtPattern.hourUserSeparator +
-        TxtPattern.user +
-        TxtPattern.userSeparator +
-        TxtPattern.mediaOmitted
+        TxtPattern.hourMessageSeparator +
+        TxtPattern.info
 
-    public createMessage(array: RegExpMatchArray): MediaMessage {
+    public createMessage(array: RegExpMatchArray): InfoMessage {
         return {
             date: this.createDate(array),
-            user: this.getUser(array),
-            media: array[13]
+            message: array[11]
         }
     }
 }
+
